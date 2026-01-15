@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>トップページ</title>
+{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <h2>学習記録管理</h2>
+        <a href="{{ url_for('auth.login') }}">
+            <button type="button" class="btn btn-primary">ログイン/ユーザー登録</button>
+        </a><br>
+        <a href="{{ url_for('public.public_list')}}">
+            <button type="button" class="btn btn-primary">公開記録の閲覧</button>
+        </a>
+    </div>
+{% endblock %}

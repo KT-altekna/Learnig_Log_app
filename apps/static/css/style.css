@@ -1,0 +1,108 @@
+main {
+    width: 700px; /* 適切な幅 */
+    max-width: 100%; /* 最大幅を決める */
+    margin: 0 auto; /* 上下0、左右自動で中央寄せ */
+}
+
+div.main-container {
+    text-align: center; /* div内の要素を中央寄せ */
+}
+
+form {
+    margin-bottom: 20px /* 下に余白を入れる */
+}
+
+.form-checkbox {
+    transform: scale(1.5);
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+table {
+    border-collapse: separate; /* セルを分離 */
+    border-spacing: 10px; /* セル間の間隔を10pxに設定（上下左右） */
+}
+
+.table span {
+    width:500px;
+    margin-right: 100px;
+}
+
+.bi-person-circle {
+    font-size: 40px;
+    color: black;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-secondary.btn-sm {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-outline-danger {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.card-header .user_info {
+    margin-right: 20px;
+}
+
+.collapse {
+    display: flex;
+}
+
+.collapse img{
+    height: 50px;
+    width: 50px;
+}
+
+.delete {
+    font-weight: bold;
+    color: red;
+}
+
+.list-group-item a {
+    margin-right: 20px;
+}
+
+.list-group-item text {
+    margin-right: 20px;
+}
+
+.list-group-plan a {
+    margin-right: 20px;
+}
+
+.list-group-plan text {
+    margin-right: 20px;
+}
+
+.list-group-milestone a {
+    margin-right: 20px;
+}
+
+.milestone-block {
+    border-spacing: 10px;
+}
+
+#profile_info .modal-dialog {
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.modal-footer .cancel {
+    margin-right: 60px;
+    color:red;
+}

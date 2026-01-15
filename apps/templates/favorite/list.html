@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>公開記録  お気に入り一覧</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('public.public_list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>公開記録  お気に入り一覧</h2>
+    {% for record, user, profile in records %}
+        <div class="card" style="width: 50rem;">
+            <div class="card-header">
+                <span class="user_info">
+                    {% if profile.public_settings %}
+                        {% if profile.icon_image_url %}
+                            {% if profile.icon_image_url != "uploads/noimage.png" %}
+                                <img src="{{ url_for('static', filename=profile.icon_image_url) }}"
+                                    class="rounded-circle" width="40">
+                            {% else %}
+                                <i class="bi bi-person-circle"></i>
+                            {% endif %}
+                        {% endif %}
+                        <a href="{{ url_for('user.profile_detail', user_id = user.id) }}">{{ user.username }}</a>
+                    {% else %}
+                        <text>非公開</text>
+                    {% endif %}
+                </span>
+                <text>{{ record.created_at.strftime('%Y-%m-%d') }}<br></text>
+            </div>
+
+            <div class="card-body">
+                <a href="{{ url_for('public.public_detail', record_id = record.record_id) }}">{{ record.title }}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

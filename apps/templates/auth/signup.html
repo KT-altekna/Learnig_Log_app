@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>ユーザー登録</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>新規登録</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ user_form.hidden_tag() }}
+        {{ profile_form.hidden_tag() }}
+        <div style="padding-bottom: 50px;">
+            <p>
+                {{ user_form.user.label }}<br>
+                {{ user_form.user }}
+            </p>
+            <p>
+                {{ user_form.password.label }}<br>
+                {{ user_form.password }}
+            </p>
+        </div>
+
+        <div>
+            <h4>プロフィール情報</h4>
+            <h6>※以下の欄を記入しなくても、ユーザー登録できます</h6>
+            <p>
+                {{ profile_form.icon_image.label }}<br>
+                {{ profile_form.icon_image() }}
+            </p>
+            <p>
+                {{ profile_form.gender.label }}<br>
+                {{ profile_form.gender }}
+            </p>
+            <p>
+                {{ profile_form.dob.label }}<br>
+                {{ profile_form.dob }}
+            </p>
+            <p>
+                {{ profile_form.residence.label }}<br>
+                {{ profile_form.residence }}
+            </p>
+            <p>
+                {{ profile_form.occupation.label }}<br>
+                {{ profile_form.occupation }}
+            </p>
+            <p>
+                {{ profile_form.self_intro.label }}<br>
+                {{ profile_form.self_intro(rows = 5, cols = 100) }}
+            </p>
+            <p>
+                {{ profile_form.public_settings.label }}<br>
+                {{ profile_form.public_settings }}
+            </p>
+        </div>
+
+        <div>
+            {{ user_form.signup_submit(class="btn btn-secondary") }}
+        </div>
+    </form>
+{% endblock %}

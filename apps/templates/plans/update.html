@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習計画編集</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('plans.list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>学習計画の編集</h2>
+    {% for message in get_flashed_messages() %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div style="padding-bottom: 30px;">
+            <p>
+                {{ form.title.label }}<br>
+                {{ form.title }}
+            </p>
+            <p>
+                {{ form.purpose.label }}<br>
+                {{ form.purpose }}
+            </p>
+            <p>
+                {{ form.start_date.label }}<br>
+                {{ form.start_date }}
+            </p>
+            <p>
+                {{ form.final_date.label }}<br>
+                {{ form.final_date }}
+            </p>
+            <h3>マイルストーン</h3>
+            {% for ms in form.milestones %}
+                {{ ms.hidden_tag() }}
+                <div class="milestone-block">
+                    {{ ms.title.label }}<br>
+                    {{ ms.title }}<br>
+                    {{ ms.due_date.label }}<br>
+                    {{ ms.due_date }}<br>
+                    {{ ms.remove_milestone(class="btn btn-outline-danger") }}
+                    <hr>
+                </div>
+            {% endfor %}
+            <div>
+                {{ form.add_milestone(class="btn btn-outline-primary") }}
+            </div>
+        </div>
+
+        <div>
+            {{ form.update_submit(class="btn btn-primary") }}
+        </div>
+    </form>
+{% endblock %}

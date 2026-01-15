@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>プロフィール編集画面</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('user.home') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h3>プロフィール</h3>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            <p>
+                {{ form.icon_image.label }}<br>
+                {{ form.icon_image() }}
+            </p>
+            <p>
+                {{ form.gender.label }}<br>
+                {{ form.gender }}
+            </p>
+            <p>
+                {{ form.dob.label }}<br>
+                {{ form.dob }}
+            </p>
+            <p>
+                {{ form.residence.label }}<br>
+                {{ form.residence }}
+            </p>
+            <p>
+                {{ form.occupation.label }}<br>
+                {{ form.occupation }}
+            </p>
+            <p>
+                {{ form.self_intro.label }}<br>
+                {{ form.self_intro(rows = 5, cols = 100) }}
+            </p>
+            <p>
+                {{ form.public_settings.label }}<br>
+                {{ form.public_settings }}
+            </p>
+        </div>
+
+        <div>
+            {{ form.update_submit(class="btn btn-primary") }}
+        </div>
+    </form>
+{% endblock %}

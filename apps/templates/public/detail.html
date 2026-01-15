@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>公開記録の詳細</title>
+{% endblock %}
+
+{% block content %}
+    <a href="javascript:history.back();" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>公開記録の詳細</h2>
+    <h3>{{ record.title }}
+        {% if current_user.is_authenticated %}
+            {% if is_favorite %}
+                <a href="{{ url_for('favorite.favorite_remove', record_id=record.record_id) }}">
+                    <i class="bi bi-star-fill"></i>
+                </a>
+            {% else %}
+                <a href="{{ url_for('favorite.favorite_add', record_id=record.record_id) }}">
+                    <i class="bi bi-bi bi-star"></i>
+                </a>
+            {% endif %}
+        {% endif %}
+    </h3>
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th class="fs-4">学習計画</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th>計画名</th>
+                <td>{{ plan.title }}</td>
+            </tr>
+            <tr>
+                <th>計画目的</th>
+                <td>{{ plan.purpose }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th class="fs-4">学習記録</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th>記録作成日</th>
+                <td>{{ record.created_at }}</td>
+            </tr>
+            <tr>
+                <th>学習内容</th>
+                <td>{{ record.content }}</td>
+            </tr>
+            <tr>
+                <th>学習時間</th>
+                <td>{{ record.period }}</td>
+            </tr>
+            <tr>
+                <th>成果物</th>
+                <td>{{ record.product }}</td>
+            </tr>
+            <tr>
+                <th>身についた技術</th>
+                <td>{{ record.acquired_skills }}</td>
+            </tr>
+            <tr>
+                <th>振り返り</th>
+                <td>{{ record.reflection }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

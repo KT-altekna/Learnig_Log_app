@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習計画の詳細</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('plans.list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>学習計画の詳細</h2>
+    <h4>{{ plan.title }}</h4>
+    <table class="table table-striped-columns">
+        <tr>
+            <th>計画作成日</th>
+            <td>{{ plan.created_at }}</td>
+        </tr>
+        <tr>
+            <th>学習目的</th>
+            <td>{{ plan.purpose }}</td>
+        </tr>
+        <tr>
+            <th>開始日</th>
+            <td>{{ plan.start_date }}</td>
+        </tr>
+        <tr>
+            <th>終了日</th>
+            <td>{{ plan.final_date }}</td>
+        </tr>
+    </table>
+
+    <h4>マイルストーン</h4>
+    <table class="table">
+        <tr>
+            <td>
+                <ol class="list-group  list-group-flush list-group-numbered">
+                {% for milestone in milestones %}
+                    <li class="list-group-item">
+                        <span>{{ milestone.title }}</span>
+                        <span>期限：{{ milestone.due_date }}</span>
+                        </li>
+                {% endfor %}
+                </ol>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習記録作成</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('records.list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>学習記録の作成</h2>
+    {% for message in get_flashed_messages() %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div style="padding-bottom: 30px;">
+            <p>
+                {{ form.plan.label }}<br>
+                {{ form.plan }}
+            </p>
+            <p>
+                {{ form.title.label }}<br>
+                {{ form.title }}
+            </p>
+            <p>
+                {{ form.content.label }}<br>
+                {{ form.content }}
+            </p>
+            <p>
+                {{ form.period.label }}<br>
+                {{ form.period }}
+            </p>
+            <p>
+                {{ form.product.label }}<br>
+                {{ form.product(rows = 3, cols = 60) }}
+            </p>
+            <p>
+                {{ form.acquired_skills.label }}<br>
+                {{ form.acquired_skills(rows = 5, cols = 60) }}
+            </p>
+            <p>
+                {{ form.reflection.label }}<br>
+                {{ form.reflection(rows = 5, cols = 60) }}
+            </p>
+            <p>
+                {{ form.public_settings.label }}<br>
+                {{ form.public_settings }}
+            </p>
+        </div>
+
+        <div>
+            {{ form.create_submit(class="btn btn-primary") }}
+        </div>
+    </form>
+{% endblock %}

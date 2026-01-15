@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習記録の詳細</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('records.list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>学習記録の詳細</h2>
+    <h4>{{ record.title }}</h4>
+    <table class="table table-striped-columns">
+        <tr>
+            <th>記録作成日</th>
+            <td>{{ record.created_at }}</td>
+        </tr>
+        <tr>
+            <th>学習内容</th>
+            <td>{{ record.content }}</td>
+        </tr>
+        <tr>
+            <th>学習時間</th>
+            <td>{{ record.period }}</td>
+        </tr>
+        <tr>
+            <th>成果物</th>
+            <td>{{ record.product }}</td>
+        </tr>
+        <tr>
+            <th>身についた技術</th>
+            <td>{{ record.acquired_skills }}</td>
+        </tr>
+        <tr>
+            <th>振り返り</th>
+            <td>{{ record.reflection }}</td>
+        </tr>
+        <tr>
+            <th>公開設定</th>
+            <td>
+                {% if record.public_settings %}
+                    <input type="checkbox" name="ps_Check" value="1" disabled checked>
+                {% else %}
+                    <input type="checkbox" name="ps_Check" value="0" disabled>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

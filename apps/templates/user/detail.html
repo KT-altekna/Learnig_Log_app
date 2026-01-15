@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>プロフィール情報</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('public.public_list') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <h2>プロフィール情報</h2>
+    <h4>
+        {% if profile.icon_image_url %}
+            {% if profile.icon_image_url != "uploads/noimage.png" %}
+                <img src="{{ url_for('static', filename=profile.icon_image_url) }}"
+                    class="rounded-circle" width="40">
+            {% else %}
+                <i class="bi bi-person-circle"></i>
+            {% endif %}
+        {% endif %}
+        {{ user.username }}
+    </h4>
+    <table class="table table-striped-columns">
+        <tr>
+            <th>性別</th>
+            <td>{{ profile.gender }}</td>
+        </tr>
+        <tr>
+            <th>生年月日</th>
+            <td>{{ profile.dob }}</td>
+        </tr>
+        <tr>
+            <th>居住地</th>
+            <td>{{ profile.residence }}</td>
+        </tr>
+        <tr>
+            <th>職業</th>
+            <td>{{ profile.occupation }}</td>
+        </tr>
+        <tr>
+            <th>自己紹介</th>
+            <td>{{ profile.self_intro }}</td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+<div class="modal fade" id="profile_info" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ current_user.username }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>プロフィール</p>
+                {% if current_profile %}
+                    <p><strong>ユーザー名：</strong>{{ current_user.username }}</p>
+                    <p><strong>性別：</strong>{{ current_profile.gender }}</p>
+                    <p><strong>生年月日：</strong>{{ current_profile.dob }}</p>
+                    <p><strong>住居地：</strong>{{ current_profile.residence }}</p>
+                    <p><strong>職業：</strong>{{ current_profile.occupation }}</p>
+                    <p><strong>自己紹介：</strong>{{ current_profile.self_intro }}</p>
+                    <p><strong>公開設定：</strong>
+                        {% if current_profile.public_settings == True %}
+                            ON
+                        {% else %}
+                            OFF
+                        {% endif %}
+                    </p>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <a class = "cancel" href="{{ url_for('user.account_delete', user_id = current_user.id) }}">退会する</a>
+                <a href="{{ url_for('user.profile_update', user_id = current_user.id) }}">編集する</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

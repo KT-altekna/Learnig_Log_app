@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習計画一覧</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('user.home') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <div style="padding-bottom: 50px;">
+        <h2>学習計画</h2>
+        <a href="{{ url_for('plans.create_plan') }}">
+            <button type="button" class="btn btn-primary">学習計画の作成</button>
+        </a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="fs-3">学習計画リスト</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for plan in plans %}
+                <tr class="list-group-plan">
+                    <td>
+                        <div class="list-group-plan">
+                            <a href="{{ url_for('plans.detail_plan', plan_id = plan.plan_id) }}">
+                                {{ plan.title }}
+                            </a>
+                            <text>期間：{{ plan.start_date }} ~ {{ plan.final_date }}</text>
+                            <a class="btn btn-outline-primary" href="{{ url_for('plans.update_plan', plan_id = plan.plan_id) }}">
+                                編集
+                            </a>
+                            <a class="btn btn-outline-danger" href="{{ url_for('plans.delete_plan', plan_id = plan.plan_id) }}">
+                                削除
+                            </a>
+                        </div>
+                        <br>
+                        <div class="list-group-milestone">
+                            <p><strong>マイルストーン</strong></p>
+                            <ol>
+                                {% for milestone in milestones %}
+                                    {% if plan.plan_id == milestone.plan_id %}
+                                        <li>
+                                            {{ milestone.title }} 期限：{{ milestone.due_date }}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ol>
+                            <hr>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

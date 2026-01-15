@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>学習記録一覧</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{{ url_for('user.home') }}" class="btn btn-secondary btn-sm">◀ 戻る</a>
+
+    <div style="padding-bottom: 50px;">
+        <h2>学習記録</h2>
+        <a href="{{ url_for('records.create_record') }}" class="btn btn-primary">学習記録の作成</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="fs-3">学習記録リスト</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for plan in plans %}
+            {# この計画に紐づく記録だけを抽出 #}
+            {% set plan_records = records | selectattr('plan_id', 'equalto', plan.plan_id) | list %}
+
+            {# 記録が1件以上ある場合のみ表示 #}
+            {% if plan_records %}
+                <tr>
+                    <td>
+                        <p>{{ plan.title }}</p>
+                        <ul class="list-group list-group-flush">
+                        {% for record in plan_records %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('records.detail_record', record_id=record.record_id) }}">
+                                    {{ record.title }}
+                                </a>
+                                <a class="btn btn-outline-primary"
+                                href="{{ url_for('records.update_record', record_id=record.record_id) }}">
+                                    編集
+                                </a>
+                                <a class="btn btn-outline-danger"
+                                href="{{ url_for('records.delete_record', record_id=record.record_id) }}">
+                                    削除
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
