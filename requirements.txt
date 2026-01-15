@@ -4,4 +4,4 @@ flask_migrate==4.1.0
 flask-wtf==1.2.2
 wtforms==3.2.1
 pymysql==1.1.2
-psycopg2-binary=2.9.11
+psycopg2-binary==2.9.11
