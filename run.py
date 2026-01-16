@@ -25,21 +25,10 @@ app.register_blueprint(records_bp)
 app.register_blueprint(public_bp)
 app.register_blueprint(favorite_bp)
 
-# DB接続の設定
-"""
-DB_INFO = {
-    'user' : 'appuser',
-    'password':'Flaskpassword',
-    'host':'localhost',
-    'name':'learning_log'
-}
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/{name}'.format(**DB_INFO)
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-"""
-
 # Migrateとアプリ連携
 Migrate(app, db)
 
 # アプリの起動
 if __name__=="__main__":
+
     app.run(debug=True)
